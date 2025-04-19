@@ -23,25 +23,25 @@
 '''
 
 class ContainerWithMostWater(object):
-    def maxArea(self, height):
+    @staticmethod
+    def max_area(height):
         """
         :type height: List[int]
         :rtype: int
         """
 
-        left, right, max = 0, len(height) - 1, 0
+        left, right, result = 0, len(height) - 1, 0
         while left != right:
             lower = height[left] if height[left] < height[right] else height[right]
             volume = lower * (right - left)
-            if volume > max:
-                max = volume
+            if volume > result:
+                result = volume
 
             if height[left] < height[right]:
                 left += 1
             else:
                 right -= 1
 
-        return max
+        return result
 
-solution = ContainerWithMostWater()
-print(solution.maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
+print(ContainerWithMostWater.max_area([1, 8, 6, 2, 5, 4, 8, 3, 7]))
